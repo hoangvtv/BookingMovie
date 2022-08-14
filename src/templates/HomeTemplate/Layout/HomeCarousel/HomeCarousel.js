@@ -3,6 +3,7 @@ import { Carousel } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getCarouselAction } from "../../../../redux/actions/CarouselAction";
+import "./HomeCarousel.css";
 
 const contentStyle = {
   height: "600px",
@@ -29,16 +30,16 @@ export default function HomeCarousel() {
           <div
             style={{ ...contentStyle, backgroundImage: `url(${item.hinhAnh})` }}
           >
-            <img
-              src={item.hinhAnh}
-              alt="hinh anh"
-              className="w-full opacity-0 "
-            />
+            <img src={item.hinhAnh} className="opacity-0" alt={item.hinhAnh} />
           </div>
         </div>
       );
     });
   };
 
-  return <Carousel effect="fade">{renderImgae()}</Carousel>;
+  return (
+    <Carousel effect="fade" style={{ width: "100%", padding: 0, margin: 0 }}>
+      {renderImgae()}
+    </Carousel>
+  );
 }
