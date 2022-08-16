@@ -4,13 +4,18 @@ import HomeMenu from "./HomeMenu.js/HomeMenu";
 import { useDispatch, useSelector } from "react-redux";
 import MultipleRowSlick from "../../components/RSlick/MultipleRowsSlick";
 import { getFilmAction } from "../../redux/actions/FilmAction";
+import { getMovieTheatelAction } from "../../redux/actions/MovieTheateAction";
 
 export default function Home() {
   const { arrFilm } = useSelector((state) => state.FilmReducer);
+  const { movieTheates } = useSelector((state) => state.MovieTheateReducer);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getFilmAction);
+    dispatch(getMovieTheatelAction);
   }, []);
+
+  console.log("movieTheates", movieTheates);
 
   return (
     <div>
@@ -27,7 +32,7 @@ export default function Home() {
       {/* <MultipleRowsSlick arrFilm={arrFilm} /> */}
 
       <div className="mx-36">
-        <HomeMenu />
+        <HomeMenu movieTheates={movieTheates} />
       </div>
     </div>
   );
