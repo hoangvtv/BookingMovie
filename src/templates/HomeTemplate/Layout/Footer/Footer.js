@@ -1,7 +1,15 @@
 import React from "react";
 import "./Footer.css";
+import { useSelector } from "react-redux";
+import _ from "lodash";
 
 export default function Footer() {
+  const { movieTheates } = useSelector((state) => state.MovieTheateReducer);
+
+  const movieTheateLst = _.map(movieTheates, (movieTheate) =>
+    _.pick(movieTheate, ["maHeThongRap", "tenHeThongRap", "logo"])
+  );
+
   return (
     <footer>
       <div className="footer-gray">
@@ -182,8 +190,22 @@ export default function Footer() {
               </form>
             </div>
             {/*/.ftr-email-form*/}
-            <div className="ftr-email-privacy-policy" />
+            <div className="ftr-email-privacy-policy mb-3" />
           </div>
+
+          <div className="col-span-6 text-center md:text-left md:col-span-3">
+            <p className="text-lg font-medium text-black ">PARTNER</p>
+            <div className="grid grid-cols-3 " style={{ color: "#fff" }}>
+              {movieTheateLst.map((movieTheateLs, index) => {
+                return (
+                  <div key={index}>
+                    <img src={movieTheateLs.logo} style={{ width: 50 }} />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
           {/*/.footer-email*/}
           <div className="footer-social">
             <h6 className="ftr-hdr">Follow Us</h6>
@@ -287,11 +309,8 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          {/*/.footer-payment*/}
         </div>
-        {/*/.footer-custom*/}
       </div>
-      {/*/.footer-gray*/}
     </footer>
   );
 }
