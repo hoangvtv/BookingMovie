@@ -12,6 +12,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Home from "./pages/Home/Home";
 import Footer from "./templates/HomeTemplate/Layout/Footer/Footer";
+import Detail from "./pages/Detail/Detail";
 
 export const history = createBrowserHistory();
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/news" element={<News />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
+        <Route path="/detail/:id" element={<Detail />}></Route>
       </Routes>
 
       <Footer />

@@ -1,4 +1,9 @@
-import { GET_FILM, GET_FILM_COMING, GET_FILM_PLAYING } from "../types/FilmType";
+import {
+  GET_FILM,
+  GET_FILM_COMING,
+  GET_FILM_PLAYING,
+  GET_MOVIE_SHOWTIMES,
+} from "../types/FilmType";
 
 const initialState = {
   arrFilm: [
@@ -20,10 +25,10 @@ const initialState = {
   playing: true,
   coming: true,
   arrFilmDefault: [],
+  filmDetail: {},
 };
 
 export default (state = initialState, action) => {
-  console.log("type: ", action.type);
   switch (action.type) {
     case GET_FILM: {
       return {
@@ -51,6 +56,12 @@ export default (state = initialState, action) => {
         arrFilm: state.arrFilmDefault.filter(
           (film) => film.sapChieu === state.coming
         ),
+      };
+    }
+    case GET_MOVIE_SHOWTIMES: {
+      return {
+        ...state,
+        filmDetail: action.filmDetail,
       };
     }
     default:

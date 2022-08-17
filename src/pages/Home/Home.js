@@ -15,8 +15,6 @@ export default function Home() {
     dispatch(getMovieTheatelAction);
   }, []);
 
-  console.log("movieTheates", movieTheates);
-
   return (
     <div>
       <HomeCarousel />

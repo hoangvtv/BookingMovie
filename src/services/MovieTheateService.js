@@ -8,4 +8,11 @@ export const MovieTheateService = {
       method: "GET",
     });
   },
+
+  getMovieShowTime: (maHeThongRap) => {
+    return axios({
+      url: `${DOMAIN}/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maHeThongRap}`,
+      method: "GET",
+    });
+  },
 };
