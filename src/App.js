@@ -13,8 +13,14 @@ import Register from "./pages/Register/Register";
 import Home from "./pages/Home/Home";
 import Footer from "./templates/HomeTemplate/Layout/Footer/Footer";
 import Detail from "./pages/Detail/Detail";
+import CheckoutTemplate from "./templates/CheckoutTemplate/CheckoutTemplate";
+import Checkout from "./pages/Checkout/Checkout";
+import NotFound from "./pages/NotFound/NotFound";
+import { Suspense, lazy } from "react";
 
 export const history = createBrowserHistory();
+
+// const CheckoutLazy = lazy(() => import("./pages/Checkout/Checkout"));
 
 function App() {
   return (
@@ -28,7 +34,13 @@ function App() {
         <Route path="/news" element={<News />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
+        {/* <Suspense fallback={<div>Loading...</div>}>
+          <Route path="/checkout" element={<CheckoutLazy />}></Route>
+        </Suspense> */}
         <Route path="/detail/:id" element={<Detail />}></Route>
+        <Route path="/checkout/:id" element={<Checkout />}></Route>
+        <Route path="*" element={<NotFound />} />
+        {/* <CheckoutTemplate path="/checkout/:id" Element={<Checkout />} /> */}
       </Routes>
 
       <Footer />

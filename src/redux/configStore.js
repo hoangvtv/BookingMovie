@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import CarouselReducer from "./reducers/CarouselReducer";
 import FilmReducer from "./reducers/FilmReducer";
 import MovieTheateReducer from "./reducers/MovieTheateReducer";
+import UserReducer from "./reducers/UserReducer";
 
 const rootReducer = combineReducers({
   // reducers go here
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
   CarouselReducer,
   FilmReducer,
   MovieTheateReducer,
+  UserReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));

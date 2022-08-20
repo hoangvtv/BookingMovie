@@ -1,11 +1,11 @@
 import React from "react";
 import { PlayCircleOutlined } from "@ant-design/icons";
 import "./FilmFlip.css";
-import { history } from "../../App.js";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function FilmFlip(props) {
   const { film } = props;
+  const navigate = useNavigate();
   return (
     <div className="flip-card mt-2 ">
       <div className="flip-card-inner">
@@ -46,19 +46,13 @@ export default function FilmFlip(props) {
           </div>
         </div>
       </div>
-      <div className="bg-orange-300 text-center cursor-pointer py-2 bg-indigo-300 my-2 text-success-50 font-bold">
-        <NavLink
-          to={`/detail/${film.maPhim}`}
-          style={{
-            color: "white",
-            textDecoration: "none",
-            width: "100%",
-            height: "100%",
-            padding: "5px 20px",
-          }}
-        >
-          ĐẶT VÉ
-        </NavLink>
+      <div
+        className="bg-orange-300 text-center cursor-pointer py-2 bg-indigo-300 my-2 text-success-50 font-bold"
+        onClick={() => {
+          navigate(`/detail/${film.maPhim}`);
+        }}
+      >
+        ĐẶT VÉ
       </div>
     </div>
   );
