@@ -6,26 +6,23 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../redux/actions/UserAction";
 
-const ValidationSchema = Yup.object().shape({
-  taiKhoan: Yup.string().required("Required"),
-  matKhau: Yup.string()
-    .required("Required")
-    .min(6, "Password must be at least 6 characters"),
-});
-
 export default function Login() {
   const dispatch = useDispatch();
 
-  const userLogin = useSelector((state) => state.UserReducer.userLogin);
+  // const userLogin = useSelector((state) => state.UserReducer.userLogin);
 
-  console.log("userLogin", userLogin);
   const formik = useFormik({
     initialValues: {
       taiKhoan: "",
       matKhau: "",
     },
+    validationSchema: Yup.object().shape({
+      taiKhoan: Yup.string().required("Required"),
+      matKhau: Yup.string()
+        .required("Required")
+        .min(6, "Password must be at least 6 characters"),
+    }),
     onSubmit: (values) => {
-      // console.log("values", values);
       dispatch(loginAction(values));
     },
   });
@@ -88,13 +85,15 @@ export default function Login() {
                 className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                 placeholder="Nhập vào tài khoản"
               />
+              <div className="text-red-600 text-right">
+                {formik.errors.taiKhoan}
+              </div>
             </div>
             <div className="mt-8">
               <div className="flex justify-between items-center">
                 <div className="text-sm font-bold text-gray-700 tracking-wide">
                   Mật khẩu
                 </div>
-                <div></div>
               </div>
               <input
                 type="password"
@@ -103,6 +102,10 @@ export default function Login() {
                 className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                 placeholder="Nhập vào mật khẩu"
               />
+              <div className="text-red-600 text-right">
+                {formik.errors.matKhau}
+              </div>
+
               <NavLink
                 to=""
                 className="text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800

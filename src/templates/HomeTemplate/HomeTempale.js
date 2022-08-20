@@ -1,15 +1,14 @@
 import React, { Fragment } from "react";
+import Footer from "./Layout/Footer/Footer";
 import Header from "./Layout/Header/Header";
 import HomeCarousel from "./Layout/HomeCarousel/HomeCarousel";
 
-export default function HomeTempale() {
+export default function HomeTempale({ children }) {
   return (
     <Fragment>
-      <HomeCarousel />
-
-      <footer className="bg-black h-10 text-white">
-        Đây là footer homepage
-      </footer>
+      <Header />
+      {children}
+      <Footer />
     </Fragment>
   );
 }

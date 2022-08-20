@@ -17,6 +17,7 @@ import CheckoutTemplate from "./templates/CheckoutTemplate/CheckoutTemplate";
 import Checkout from "./pages/Checkout/Checkout";
 import NotFound from "./pages/NotFound/NotFound";
 import { Suspense, lazy } from "react";
+import { UserTemplate } from "./templates/UserTemplate/UserTemplate";
 
 export const history = createBrowserHistory();
 
@@ -25,25 +26,60 @@ export const history = createBrowserHistory();
 function App() {
   return (
     <div>
-      <Header />
-
       <Routes history={history}>
-        <Route path="/" element={<Home />} />
-        {/* <Route path="/" element={<HomeTempale />}></Route> */}
-        <Route path="/contact" element={<Contact />}></Route>
-        <Route path="/news" element={<News />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-        {/* <Suspense fallback={<div>Loading...</div>}>
-          <Route path="/checkout" element={<CheckoutLazy />}></Route>
-        </Suspense> */}
-        <Route path="/detail/:id" element={<Detail />}></Route>
-        <Route path="/checkout/:id" element={<Checkout />}></Route>
-        <Route path="*" element={<NotFound />} />
-        {/* <CheckoutTemplate path="/checkout/:id" Element={<Checkout />} /> */}
-      </Routes>
+        <Route
+          path="/"
+          element={
+            <HomeTempale>
+              <Home />
+            </HomeTempale>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <HomeTempale>
+              <Contact />
+            </HomeTempale>
+          }
+        />
 
-      <Footer />
+        <Route
+          path="/news"
+          element={
+            <HomeTempale>
+              <News />
+            </HomeTempale>
+          }
+        />
+        <Route
+          path="/detail/:id"
+          element={
+            <HomeTempale>
+              <Detail />
+            </HomeTempale>
+          }
+        />
+
+        <Route path="/register" element={<Register />}></Route>
+        <Route
+          path="/checkout/:id"
+          element={
+            <CheckoutTemplate>
+              <Checkout />
+            </CheckoutTemplate>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <UserTemplate>
+              <Login />
+            </UserTemplate>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }
