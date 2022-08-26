@@ -1,7 +1,11 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Outlet } from "react-router";
 
 export const UserTemplate = ({ children }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
+
   return (
     <Fragment>
       <div className="lg:flex">

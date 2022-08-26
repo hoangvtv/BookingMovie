@@ -68,7 +68,7 @@ function HomeMenu(props) {
                                       .map((showtimes, index) => {
                                         return (
                                           <NavLink
-                                            to="/"
+                                            to={`/checkout/${showtimes.maLichChieu}`}
                                             key={index}
                                             className="text-xl text-red-400"
                                           >

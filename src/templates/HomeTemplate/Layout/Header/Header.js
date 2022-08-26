@@ -1,12 +1,21 @@
-import React, { Suspense } from "react";
-import { NavLink } from "react-router-dom";
+import React, { Fragment, Suspense } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Select } from "antd";
 
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import _ from "lodash";
+import { TOKEN, USER_LOGIN } from "../../../../util/config";
+import { history } from "../../../../App";
 
 const { Option } = Select;
 export default function Header() {
+  const navigate = useNavigate();
+
   const { t, i18n } = useTranslation();
+
+  const { userLogin } = useSelector((state) => state.UserReducer);
+
   const navLinkStyle = ({ isActive }) => ({
     color: isActive ? "#fff" : "",
     borderBottom: isActive ? "2px solid #fff" : "",
@@ -15,7 +24,55 @@ export default function Header() {
   const handleChange = (value) => {
     i18n.changeLanguage(value);
   };
+  const renderLogin = () => {
+    if (_.isEmpty(userLogin)) {
+      return (
+        <Fragment>
+          <button
+            onClick={() => {
+              navigate("/login");
+            }}
+            className="self-center px-8 py-3 rounded"
+          >
+            {t("signin")}
+          </button>
+          <button
+            onClick={() => {
+              navigate("/register");
+            }}
+            className="self-center px-8 py-3 font-semibold rounded bg-violet-600 text-coolGray-50"
+          >
+            {t("signup")}
+          </button>
+        </Fragment>
+      );
+    }
 
+    return (
+      <Fragment>
+        {" "}
+        <button
+          onClick={() => {
+            navigate("/profile");
+          }}
+          className="self-center px-8 py-3 rounded"
+        >
+          Hello ! {userLogin.taiKhoan}
+        </button>
+        <button
+          onClick={() => {
+            localStorage.removeItem(USER_LOGIN);
+            localStorage.removeItem(TOKEN);
+            navigate("/");
+            window.location.reload();
+          }}
+          className="text-yellow-500 mr-5"
+        >
+          {t("logout")}
+        </button>
+      </Fragment>
+    );
+  };
   return (
     <header className="p-4 bg-coolGray-100 text-coolGray-800 bg-opacity-40 bg-black text-white fixed w-full z-10">
       <div className="container flex justify-between h-16 mx-auto">
@@ -59,7 +116,7 @@ export default function Header() {
           </li>
         </ul>
         <div className="items-center flex-shrink-0 hidden lg:flex">
-          <NavLink
+          {/* <NavLink
             to="/login"
             className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400  text-white "
             style={navLinkStyle}
@@ -72,8 +129,8 @@ export default function Header() {
             style={navLinkStyle}
           >
             {t("signup")}
-          </NavLink>
-
+          </NavLink> */}
+          {renderLogin()}
           <Select
             defaultValue="en"
             style={{ width: 100 }}

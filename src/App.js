@@ -19,6 +19,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import { Suspense, lazy } from "react";
 import { UserTemplate } from "./templates/UserTemplate/UserTemplate";
 import Loading from "./components/Loading/Loading";
+import Profile from "./pages/Profile/Profile";
 
 export const history = createBrowserHistory();
 
@@ -63,7 +64,6 @@ function App() {
           }
         />
 
-        <Route path="/register" element={<Register />}></Route>
         <Route
           path="/checkout/:id"
           element={
@@ -78,6 +78,23 @@ function App() {
             <UserTemplate>
               <Login />
             </UserTemplate>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <UserTemplate>
+              <Register />
+            </UserTemplate>
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            <HomeTempale>
+              <Profile />
+            </HomeTempale>
           }
         />
         <Route path="*" element={<NotFound />} />

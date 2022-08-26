@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
-import { USER_LOGIN } from "../../util/config";
-import { Navigate, useParams } from "react-router-dom";
+import { TOKEN, USER_LOGIN } from "../../util/config";
+import { Navigate, NavLink, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./Checkout.module.css";
 import {
@@ -9,7 +9,12 @@ import {
   getDetaiBookTicketAction,
   setGheKhachDangDatAction,
 } from "../../redux/actions/BookTicketAction";
-import { CheckOutlined, CloseOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  CheckOutlined,
+  CloseOutlined,
+  UserOutlined,
+  HomeOutlined,
+} from "@ant-design/icons";
 import "./Checkout.css";
 import _ from "lodash";
 import { ThongTinDatVe } from "../../_core/models/ThongTinDatVe";
@@ -19,6 +24,8 @@ import { getInfoUserAction } from "../../redux/actions/UserAction";
 import moment from "moment";
 import { CHANGE_TAB } from "../../redux/types/BookTicketType";
 import { connection } from "../../index";
+import { history } from "../../App";
+import { t } from "i18next";
 
 function Checkout() {
   const { userLogin } = useSelector((state) => state.UserReducer);
@@ -308,11 +315,68 @@ const { TabPane } = Tabs;
 
 export default function (props) {
   const { tabActive } = useSelector((state) => state.BookTicketReducer);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
+
+  const { userLogin } = useSelector((state) => state.UserReducer);
+
+  const operations = (
+    <Fragment>
+      {!_.isEmpty(userLogin) ? (
+        <Fragment>
+          {" "}
+          <button
+            onClick={() => {
+              navigate("/profile");
+            }}
+          >
+            {" "}
+            <div
+              style={{
+                width: 50,
+                height: 50,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              className="text-2xl ml-5 rounded-full bg-red-200"
+            >
+              {userLogin.taiKhoan.substr(0, 1).toUpperCase()}
+            </div>
+            {t("hello.1")} ! {userLogin.taiKhoan}
+          </button>{" "}
+          <button
+            onClick={() => {
+              localStorage.removeItem(USER_LOGIN);
+              localStorage.removeItem(TOKEN);
+              navigate.push("/");
+              window.location.reload();
+            }}
+            className="text-blue-800"
+          >
+            Đăng xuất
+          </button>{" "}
+        </Fragment>
+      ) : (
+        ""
+      )}
+    </Fragment>
+  );
+
+  useEffect(() => {
+    return () => {
+      dispatch({
+        type: "CHANGE_TAB_ACTIVE",
+        number: "1",
+      });
+    };
+  }, []);
+
   return (
     <div className="p-5">
       <Tabs
+        tabBarExtraContent={operations}
         defaultActiveKey="1"
         activeKey={tabActive.toString()}
         onChange={(key) => {
@@ -328,6 +392,23 @@ export default function (props) {
         <TabPane tab="02 KẾT QUẢ ĐẶT VÉ" key="2">
           <KetQuaDatVe {...props} />
         </TabPane>
+        <TabPane
+          tab={
+            <div
+              className="text-center"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <NavLink to="/">
+                <HomeOutlined style={{ marginLeft: 10, fontSize: 25 }} />
+              </NavLink>
+            </div>
+          }
+          key="3"
+        ></TabPane>
       </Tabs>
     </div>
   );
