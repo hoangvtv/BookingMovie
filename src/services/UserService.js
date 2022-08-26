@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DOMAIN, GROUP_ID } from "../util/config";
+import { DOMAIN, GROUP_ID, TOKEN } from "../util/config";
 
 export const UserService = {
   signIn: (userLogin) => {
@@ -7,6 +7,16 @@ export const UserService = {
       url: `${DOMAIN}/api/QuanLyNguoiDung/DangNhap`,
       method: "POST",
       data: userLogin,
+    });
+  },
+
+  getInfoUser() {
+    return axios({
+      url: `${DOMAIN}/api/QuanLyNguoiDung/ThongTinTaiKhoan`,
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem(TOKEN)}`,
+      },
     });
   },
 };

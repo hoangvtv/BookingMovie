@@ -18,6 +18,7 @@ import Checkout from "./pages/Checkout/Checkout";
 import NotFound from "./pages/NotFound/NotFound";
 import { Suspense, lazy } from "react";
 import { UserTemplate } from "./templates/UserTemplate/UserTemplate";
+import Loading from "./components/Loading/Loading";
 
 export const history = createBrowserHistory();
 
@@ -26,6 +27,7 @@ export const history = createBrowserHistory();
 function App() {
   return (
     <div>
+      <Loading />
       <Routes history={history}>
         <Route
           path="/"
