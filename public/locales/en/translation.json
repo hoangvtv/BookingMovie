@@ -1,0 +1,11 @@
+{
+  "hello": {
+    "1": "Hello",
+    "2": "Hello"
+  },
+  "signin": "Sign in",
+  "signup": "Sign up",
+  "home": "Home",
+  "contact": "Contact",
+  "news": "News"
+}

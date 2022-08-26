@@ -15,6 +15,9 @@ import "slick-carousel/slick/slick-theme.css";
 import * as signalR from "@aspnet/signalr";
 import { DOMAIN } from "./util/config";
 
+//import đa ngôn ngữ
+import "./i18n";
+
 //Đoạn code để kết nối đến server lắng nghe sự kiện từ server
 export const connection = new signalR.HubConnectionBuilder()
   .withUrl(`${DOMAIN}/DatVeHub`)

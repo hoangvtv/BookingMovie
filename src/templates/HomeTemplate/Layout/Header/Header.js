@@ -1,11 +1,21 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { NavLink } from "react-router-dom";
+import { Select } from "antd";
 
+import { useTranslation } from "react-i18next";
+
+const { Option } = Select;
 export default function Header() {
+  const { t, i18n } = useTranslation();
   const navLinkStyle = ({ isActive }) => ({
     color: isActive ? "#fff" : "",
     borderBottom: isActive ? "2px solid #fff" : "",
   });
+
+  const handleChange = (value) => {
+    i18n.changeLanguage(value);
+  };
+
   return (
     <header className="p-4 bg-coolGray-100 text-coolGray-800 bg-opacity-40 bg-black text-white fixed w-full z-10">
       <div className="container flex justify-between h-16 mx-auto">
@@ -23,7 +33,7 @@ export default function Header() {
                  hover:scale-110"
               style={navLinkStyle}
             >
-              Home
+              {t("home")}
             </NavLink>
           </li>
           <li className="flex">
@@ -33,7 +43,7 @@ export default function Header() {
                  hover:scale-110"
               style={navLinkStyle}
             >
-              Contact
+              {t("contact")}
             </NavLink>
           </li>
 
@@ -44,7 +54,7 @@ export default function Header() {
                 hover:scale-110"
               style={navLinkStyle}
             >
-              News
+              {t("news")}
             </NavLink>
           </li>
         </ul>
@@ -54,15 +64,26 @@ export default function Header() {
             className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400  text-white "
             style={navLinkStyle}
           >
-            Sign in
+            {t("signin")}
           </NavLink>
           <NavLink
             to="/register"
             className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400  text-white "
             style={navLinkStyle}
           >
-            Sign up
+            {t("signup")}
           </NavLink>
+
+          <Select
+            defaultValue="en"
+            style={{ width: 100 }}
+            onChange={handleChange}
+          >
+            <Option value="en">Eng</Option>
+            <Option value="chi">Chi</Option>
+
+            <Option value="vi">Vi</Option>
+          </Select>
         </div>
         <button className="p-4 lg:hidden">
           <svg

@@ -1,0 +1,11 @@
+{
+  "hello": {
+    "1": "Xin Chào",
+    "2": "Xin Chào"
+  },
+  "signin": "Đăng nhập",
+  "signup": "Đăng ký",
+  "home": "Trang chủ",
+  "contact": "Liên hệ",
+  "news": "Tin tức"
+}
