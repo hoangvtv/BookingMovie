@@ -20,6 +20,12 @@ import { Suspense, lazy } from "react";
 import { UserTemplate } from "./templates/UserTemplate/UserTemplate";
 import Loading from "./components/Loading/Loading";
 import Profile from "./pages/Profile/Profile";
+import AdminTemplate from "./templates/AdminTemplate/AdmimTemplate";
+import Dashboard from "./pages/Admin/Dashboard/Dashboard";
+import Films from "./pages/Admin/Films/Films";
+import Users from "./pages/Admin/Users/Users";
+import AddFilm from "./pages/Admin/Films/AddFilm/AddFilm";
+import EditFilm from "./pages/Admin/Films/EditFilm/EditFilm";
 
 export const history = createBrowserHistory();
 
@@ -95,6 +101,50 @@ function App() {
             <HomeTempale>
               <Profile />
             </HomeTempale>
+          }
+        />
+
+        <Route
+          path="/admin"
+          element={
+            <AdminTemplate>
+              <Dashboard />
+            </AdminTemplate>
+          }
+        />
+
+        <Route
+          path="/admin/films"
+          element={
+            <AdminTemplate>
+              <Films />
+            </AdminTemplate>
+          }
+        />
+
+        <Route
+          path="/admin/films/add"
+          element={
+            <AdminTemplate>
+              <AddFilm />
+            </AdminTemplate>
+          }
+        />
+        <Route
+          path="/admin/films/edit/:id"
+          element={
+            <AdminTemplate>
+              <EditFilm />
+            </AdminTemplate>
+          }
+        />
+
+        <Route
+          path="/admin/users"
+          element={
+            <AdminTemplate>
+              <Users />
+            </AdminTemplate>
           }
         />
         <Route path="*" element={<NotFound />} />

@@ -27,6 +27,9 @@ import { connection } from "../../index";
 import { history } from "../../App";
 import { t } from "i18next";
 
+import { CustomCard } from "@tsamantanis/react-glassmorphism";
+import "@tsamantanis/react-glassmorphism/dist/index.css";
+
 function Checkout() {
   const { userLogin } = useSelector((state) => state.UserReducer);
 
@@ -364,6 +367,11 @@ export default function (props) {
     </Fragment>
   );
 
+  const { detailTicket, danhSachGheDangDat, danhSachGheKhachDat } = useSelector(
+    (state) => state.BookTicketReducer
+  );
+  const { thongTinPhim, danhSachGhe } = detailTicket;
+
   useEffect(() => {
     return () => {
       dispatch({
@@ -374,42 +382,60 @@ export default function (props) {
   }, []);
 
   return (
-    <div className="p-5">
-      <Tabs
-        tabBarExtraContent={operations}
-        defaultActiveKey="1"
-        activeKey={tabActive.toString()}
-        onChange={(key) => {
-          dispatch({
-            type: "CHANGE_TAB_ACTIVE",
-            number: key,
-          });
-        }}
+    <div
+      style={{
+        backgroundImage: `url(${thongTinPhim.hinhAnh})`,
+        minHeight: "100vh",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <CustomCard
+        style={{ minHeight: "100vh" }}
+        effectColor="#fff" // required
+        color="#fff" // default color is white
+        blur={20} // default blur value is 10px
+        borderRadius={0} // default border radius value is 10px
       >
-        <TabPane tab="01 CHỌN GHẾ & THANH TOÁN" key="1">
-          <Checkout {...props} />
-        </TabPane>
-        <TabPane tab="02 KẾT QUẢ ĐẶT VÉ" key="2">
-          <KetQuaDatVe {...props} />
-        </TabPane>
-        <TabPane
-          tab={
-            <div
-              className="text-center"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <NavLink to="/">
-                <HomeOutlined style={{ marginLeft: 10, fontSize: 25 }} />
-              </NavLink>
-            </div>
-          }
-          key="3"
-        ></TabPane>
-      </Tabs>
+        <div className="p-5">
+          <Tabs
+            tabBarExtraContent={operations}
+            defaultActiveKey="1"
+            activeKey={tabActive.toString()}
+            onChange={(key) => {
+              dispatch({
+                type: "CHANGE_TAB_ACTIVE",
+                number: key,
+              });
+            }}
+          >
+            <TabPane tab="01 CHỌN GHẾ & THANH TOÁN" key="1">
+              <Checkout {...props} />
+            </TabPane>
+            <TabPane tab="02 KẾT QUẢ ĐẶT VÉ" key="2">
+              <KetQuaDatVe {...props} />
+            </TabPane>
+            <TabPane
+              tab={
+                <div
+                  className="text-center"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <NavLink to="/">
+                    <HomeOutlined style={{ marginLeft: 10, fontSize: 25 }} />
+                  </NavLink>
+                </div>
+              }
+              key="3"
+            ></TabPane>
+          </Tabs>
+        </div>
+      </CustomCard>
     </div>
   );
 }
@@ -435,10 +461,10 @@ function KetQuaDatVe(props) {
               src={ticket.hinhAnh}
             />
             <div className="flex-grow">
-              <h2 className="text-pink-500 title-font font-medium text-2xl">
+              <h2 className="text-white title-font font-medium text-2xl">
                 {ticket.tenPhim}
               </h2>
-              <p className="text-gray-500">
+              <p className="text-white">
                 <span className="font-bold">Giờ chiếu:</span>{" "}
                 {moment(ticket.ngayDat).format("hh:mm A")} -{" "}
                 <span className="font-bold">Ngày chiếu:</span>{" "}
@@ -453,7 +479,7 @@ function KetQuaDatVe(props) {
                 <span className="font-bold">Ghế:</span>{" "}
                 {ticket.danhSachGhe.map((ghe, index) => {
                   return (
-                    <span className="text-green-500 text-xl" key={index}>
+                    <span className="text-white text-xl" key={index}>
                       {" "}
                       [ {ghe.tenGhe} ]
                     </span>
@@ -470,36 +496,17 @@ function KetQuaDatVe(props) {
   return (
     <div className="container">
       {" "}
-      <section className="text-gray-600 body-font">
+      <section className="text-white body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
-            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4  text-purple-600 ">
+            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4  text-red-600 ">
               Lịch sử đặt vé khách hàng
             </h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
               Hãy xem thông tin địa và thời gian để xem phim vui vẻ bạn nhé !
             </p>
           </div>
-          <div className="flex flex-wrap -m-2">
-            {renderTicket()}
-            {/* <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                <img
-                  alt="team"
-                  className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
-                  src="https://picsum.photos/200/200"
-                />
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 title-font font-medium">
-                    Lật mặt 48h
-                  </h2>
-                  <p className="text-gray-500">
-                    10:20 Rạp 5, Hệ thống rạp cinestar bhd{" "}
-                  </p>
-                </div>
-              </div>
-            </div> */}
-          </div>
+          <div className="flex flex-wrap -m-2">{renderTicket()}</div>
         </div>
       </section>{" "}
     </div>

@@ -2,30 +2,17 @@ import {
   GET_FILM,
   GET_FILM_COMING,
   GET_FILM_PLAYING,
+  GET_INFO_FILM,
   GET_MOVIE_SHOWTIMES,
 } from "../types/FilmType";
 
 const initialState = {
-  arrFilm: [
-    {
-      maPhim: 10544,
-      tenPhim: "NHÍM Sonic 3",
-      biDanh: "nhim-sonic-3",
-      trailer: "https://www.youtube.com/embed/G1Mrk6pFqVI",
-      hinhAnh: "http://movieapi.cyberlearn.vn/hinhanh/nhim-sonic-3_gp01.jpg",
-      moTa: "Khi Robotnik tìm cách quay trở về Trái Đất thành công, ông ta có một đồng minh mới là Knuckles hùng mạnh, liệu Sonic và người bạn ới Tails có thể ngăn chặn được âm mưu điên rồi để cứu lấy thế giới?",
-      maNhom: "GP01",
-      ngayKhoiChieu: "2022-08-02T00:00:00",
-      danhGia: 7,
-      hot: true,
-      dangChieu: false,
-      sapChieu: true,
-    },
-  ],
+  arrFilm: [],
   playing: true,
   coming: true,
   arrFilmDefault: [],
   filmDetail: {},
+  infoFilm: {},
 };
 
 export default (state = initialState, action) => {
@@ -62,6 +49,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         filmDetail: action.filmDetail,
+      };
+    }
+
+    case GET_INFO_FILM: {
+      return {
+        ...state,
+        infoFilm: action.infoFilm,
       };
     }
     default:
