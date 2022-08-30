@@ -59,7 +59,7 @@ const AdminTemplate = ({ children }) => {
               }}
               className="text-2xl ml-5 rounded-full bg-red-200"
             >
-              {userLogin.taiKhoan.substr(0, 1)}
+              {userLogin.taiKhoan.substr(0, 1).toUpperCase()}
             </div>
           </button>{" "}
           <button
@@ -69,7 +69,7 @@ const AdminTemplate = ({ children }) => {
               navigate("/");
               window.location.reload();
             }}
-            className="text-blue-800"
+            className="text-blue-800 hover:text-white"
           >
             Đăng xuất
           </button>{" "}
@@ -85,10 +85,13 @@ const AdminTemplate = ({ children }) => {
       <Layout style={{ minHeight: "100vh" }}>
         <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
           <div className="logo p-5">
-            <img
-              src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png"
-              alt="..."
-            />
+            <NavLink to="/">
+              {" "}
+              <img
+                src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png"
+                alt="..."
+              />
+            </NavLink>
           </div>
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             <Menu.Item key="1" icon={<UserOutlined />}>

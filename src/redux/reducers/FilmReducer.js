@@ -4,6 +4,7 @@ import {
   GET_FILM_PLAYING,
   GET_INFO_FILM,
   GET_MOVIE_SHOWTIMES,
+  SET_FILM_PARAM,
 } from "../types/FilmType";
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
   arrFilmDefault: [],
   filmDetail: {},
   infoFilm: {},
+  filmParam: {},
 };
 
 export default (state = initialState, action) => {
@@ -56,6 +58,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         infoFilm: action.infoFilm,
+      };
+    }
+
+    case SET_FILM_PARAM: {
+      return {
+        ...state,
+        filmParam: action.filmParam,
       };
     }
     default:

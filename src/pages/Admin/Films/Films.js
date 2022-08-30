@@ -5,11 +5,13 @@ import {
   EditOutlined,
   SearchOutlined,
   DeleteOutlined,
+  CalendarOutlined,
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteFilmAction,
   getFilmAction,
+  setFilmParamAction,
 } from "../../../redux/actions/FilmAction";
 const parse = require("html-react-parser");
 const { Search } = Input;
@@ -111,10 +113,21 @@ export default function Films() {
               okText="Yes"
               cancelText="No"
             >
-              <button className="text-2xl cursor-pointer">
+              <button className="text-2xl  cursor-pointer">
                 <DeleteOutlined style={{ color: "red" }} />
               </button>
             </Popconfirm>
+
+            <NavLink
+              key={1}
+              className=" mx-2 text-2xl"
+              to={`/admin/films/showtime/${film.maPhim}/${film.tenPhim}`}
+              onClick={() => {
+                dispatch(setFilmParamAction(film));
+              }}
+            >
+              <CalendarOutlined style={{ color: "green" }} />{" "}
+            </NavLink>
           </Fragment>
         );
       },

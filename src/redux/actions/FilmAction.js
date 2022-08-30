@@ -1,11 +1,5 @@
-import {
-  GET_FILM,
-  GET_FILM_COMING,
-  GET_FILM_PLAYING,
-  GET_INFO_FILM,
-} from "../types/FilmType";
+import { GET_FILM, GET_INFO_FILM, SET_FILM_PARAM } from "../types/FilmType";
 import { FilmService } from "../../services/FilmService";
-import { history } from "../,./../../App";
 
 export const getFilmAction = (tenPhim = "") => {
   return async (dispatch) => {
@@ -72,5 +66,12 @@ export const deleteFilmAction = (maPhim) => {
       alert("Xóa phim thất bại");
       console.log(err);
     }
+  };
+};
+
+export const setFilmParamAction = (filmParam) => {
+  return {
+    type: SET_FILM_PARAM,
+    filmParam,
   };
 };

@@ -26,6 +26,7 @@ import Films from "./pages/Admin/Films/Films";
 import Users from "./pages/Admin/Users/Users";
 import AddFilm from "./pages/Admin/Films/AddFilm/AddFilm";
 import EditFilm from "./pages/Admin/Films/EditFilm/EditFilm";
+import ShowTime from "./pages/Admin/Films/ShowTime/ShowTime";
 
 export const history = createBrowserHistory();
 
@@ -144,6 +145,15 @@ function App() {
           element={
             <AdminTemplate>
               <Users />
+            </AdminTemplate>
+          }
+        />
+
+        <Route
+          path="/admin/films/showtime/:idPhim/:tenPhim"
+          element={
+            <AdminTemplate>
+              <ShowTime />
             </AdminTemplate>
           }
         />
