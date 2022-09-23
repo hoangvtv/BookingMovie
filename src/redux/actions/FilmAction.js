@@ -21,7 +21,6 @@ export const createFilmAction = (formData) => {
     try {
       let result = await FilmService.createFilm(formData);
       alert("Thêm phim thành công");
-      console.log("Film created", result.data.content);
     } catch (err) {
       console.log(err);
     }
@@ -47,7 +46,6 @@ export const editInfoFilmAction = (formData) => {
     try {
       let result = await FilmService.editInfoFilm(formData);
       alert("Cập nhập phim thành công");
-      console.log("Film created", result.data.content);
       dispatch(getFilmAction());
     } catch (err) {
       alert("Cập nhập phim thất bại");

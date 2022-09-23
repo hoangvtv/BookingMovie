@@ -1,12 +1,10 @@
 import React, { Fragment, Suspense } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Select } from "antd";
-
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import _ from "lodash";
 import { TOKEN, USER_LOGIN } from "../../../../util/config";
-import { history } from "../../../../App";
 
 const { Option } = Select;
 export default function Header() {
@@ -59,6 +57,21 @@ export default function Header() {
         >
           Hello ! {userLogin.taiKhoan}
         </button>
+        {userLogin.maLoaiNguoiDung === "QuanTri" ? (
+          <Fragment>
+            {" "}
+            <button
+              onClick={() => {
+                navigate("/admin/films");
+              }}
+              className="self-center px-8 py-3 rounded"
+            >
+              Administrator
+            </button>
+          </Fragment>
+        ) : (
+          ""
+        )}
         <button
           onClick={() => {
             localStorage.removeItem(USER_LOGIN);

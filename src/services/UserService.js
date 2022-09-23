@@ -19,4 +19,56 @@ export const UserService = {
       },
     });
   },
+  register: (userRegister) => {
+    return axios({
+      url: `${DOMAIN}/api/QuanLyNguoiDung/DangKy`,
+      method: "POST",
+      data: userRegister,
+    });
+  },
+  updateUser: (user) => {
+    return axios({
+      url: `${DOMAIN}/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
+      method: "PUT",
+      data: user,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem(TOKEN)}`,
+      },
+    });
+  },
+
+  getListUser: (tuKhoa) => {
+    if (tuKhoa === "") {
+      return axios({
+        url: `${DOMAIN}/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GROUP_ID}`,
+        method: "GET",
+      });
+    } else {
+      return axios({
+        url: `${DOMAIN}/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=${GROUP_ID}&tuKhoa=${tuKhoa}`,
+        method: "GET",
+      });
+    }
+  },
+
+  editUser: (user) => {
+    return axios({
+      url: `${DOMAIN}/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
+      method: "PUT",
+      data: user,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem(TOKEN)}`,
+      },
+    });
+  },
+
+  deleteUser: (taiKhoan) => {
+    return axios({
+      url: `${DOMAIN}/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`,
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem(TOKEN)}`,
+      },
+    });
+  },
 };

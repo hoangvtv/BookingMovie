@@ -3,7 +3,6 @@ import { DOMAIN, GROUP_ID, TOKEN } from "../util/config";
 
 export const FilmService = {
   getFilm: (tenPhim) => {
-    console.log("tenPhim", 121212);
     if (tenPhim !== "") {
       return axios({
         url: `${DOMAIN}/api/QuanLyPhim/LayDanhSachPhim?maNhom=${GROUP_ID}&tenPhim=${tenPhim}`,

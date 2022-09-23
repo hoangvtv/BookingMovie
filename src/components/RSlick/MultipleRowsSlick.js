@@ -1,14 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import Slider from "react-slick";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import styleSlick from "./MultipleRowSlick.module.css";
-import Film from "../Film/Film";
 import { useDispatch, useSelector } from "react-redux";
 import FilmFlip from "../Film/FilmFlip";
-import {
-  getFilmAction,
-  getFilmPlayingAction,
-} from "../../redux/actions/FilmAction";
 import { GET_FILM_COMING, GET_FILM_PLAYING } from "../../redux/types/FilmType";
 
 function SampleNextArrow(props) {
@@ -32,6 +26,7 @@ function SamplePrevArrow(props) {
     ></div>
   );
 }
+
 const MultipleRowSlick = (props) => {
   const dispatch = useDispatch();
   const { playing, coming } = useSelector((state) => state.FilmReducer);

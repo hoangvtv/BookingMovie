@@ -22,9 +22,7 @@ import { ThongTinDatVe } from "../../_core/models/ThongTinDatVe";
 import { Tabs } from "antd";
 import { getInfoUserAction } from "../../redux/actions/UserAction";
 import moment from "moment";
-import { CHANGE_TAB } from "../../redux/types/BookTicketType";
 import { connection } from "../../index";
-import { history } from "../../App";
 import { t } from "i18next";
 
 import { CustomCard } from "@tsamantanis/react-glassmorphism";

@@ -25,7 +25,6 @@ export default function ShowTime() {
       giaVe: 0,
     },
     onSubmit: async (values) => {
-      console.log("values", values);
       try {
         const result = await MovieTheateService.taoLichChieu(values);
         alert("Tạo lịch chiếu thành công");

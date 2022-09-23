@@ -11,7 +11,7 @@ export default function Home() {
   const { movieTheates } = useSelector((state) => state.MovieTheateReducer);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getFilmAction);
+    dispatch(getFilmAction());
     dispatch(getMovieTheatelAction);
   }, []);
 

@@ -93,10 +93,7 @@ const AdminTemplate = ({ children }) => {
               />
             </NavLink>
           </div>
-          <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-            <Menu.Item key="1" icon={<UserOutlined />}>
-              <NavLink to="/admin/users">Users</NavLink>
-            </Menu.Item>
+          <Menu theme="dark" defaultSelectedKeys={["10"]} mode="inline">
             <SubMenu key="sub1" icon={<FileOutlined />} title="Films">
               <Menu.Item key="10" icon={<FileOutlined />}>
                 <NavLink to="/admin/films">Films</NavLink>
@@ -105,21 +102,9 @@ const AdminTemplate = ({ children }) => {
                 <NavLink to="/admin/films/add">Add new</NavLink>
               </Menu.Item>
             </SubMenu>
-            <Menu.Item key="3" icon={<DesktopOutlined />}>
-              <NavLink to="/admin/showtimes">Showtime</NavLink>
+            <Menu.Item key="1" icon={<UserOutlined />}>
+              <NavLink to="/admin/users">Users</NavLink>
             </Menu.Item>
-            {/* <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-                            <Menu.Item key="3">Tom</Menu.Item>
-                            <Menu.Item key="4">Bill</Menu.Item>
-                            <Menu.Item key="5">Alex</Menu.Item>
-                        </SubMenu>
-                        <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-                            <Menu.Item key="6">Team 1</Menu.Item>
-                            <Menu.Item key="8">Team 2</Menu.Item>
-                        </SubMenu>
-                        <Menu.Item key="9" icon={<FileOutlined />}>
-                            Files
-                        </Menu.Item> */}
           </Menu>
         </Sider>
         <Layout className="site-layout">

@@ -9,6 +9,8 @@ import {
   GHE_KHACH_DANG_DAT,
 } from "../types/BookTicketType";
 import { displayLoadingAction, hideLoadingAction } from "./LoadingAction";
+import { notification } from "antd";
+import { SmileOutlined } from "@ant-design/icons";
 
 export const getDetaiBookTicketAction = (maLichChieu) => {
   return async (dispatch) => {
@@ -36,10 +38,6 @@ export const bookTicketAction = (gheDuocChon, maLichChieu) => {
     let danhSachGheDangDat = getState().BookTicketReducer.danhSachGheDangDat;
     let taiKhoan = getState().UserReducer.userLogin.taiKhoan;
 
-    console.log("danhSachGheDangDat", danhSachGheDangDat);
-    console.log("taiKhoan", taiKhoan);
-    console.log("maLichChieu", maLichChieu);
-
     danhSachGheDangDat = JSON.stringify(danhSachGheDangDat);
     //call API đến server
     connection.invoke("datGhe", taiKhoan, danhSachGheDangDat, maLichChieu);
@@ -56,7 +54,6 @@ export const bookTicketAPIAction = (thongTinDatVe = new ThongTinDatVe()) => {
     try {
       dispatch(displayLoadingAction);
       const res = await BookTicketService.bookTicket(thongTinDatVe);
-      console.log("Book ticket", res.data);
 
       await dispatch(getDetaiBookTicketAction(thongTinDatVe.maLichChieu)); //await để đợi hàm này thực thi xong mới chạy hàm tiếp theo
       await dispatch({
@@ -69,9 +66,18 @@ export const bookTicketAPIAction = (thongTinDatVe = new ThongTinDatVe()) => {
         type: CHANGE_TAB,
       });
       dispatch(hideLoadingAction);
+
+      notification.open({
+        message: "Đặt vé thành công",
+        icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+      });
     } catch (error) {
       console.log(error);
       dispatch(hideLoadingAction);
+      notification.open({
+        message: "Đặt vé thất bại",
+        icon: <SmileOutlined style={{ color: "#108ee9" }} />,
+      });
     }
   };
 };

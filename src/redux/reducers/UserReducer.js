@@ -1,5 +1,10 @@
 import { TOKEN, USER_LOGIN } from "../../util/config";
-import { LOGIN, SET_INFO_USER } from "../types/UserType";
+import {
+  EDIT_USER,
+  GET_LIST_USER,
+  LOGIN,
+  SET_INFO_USER,
+} from "../types/UserType";
 
 let user = {};
 
@@ -9,8 +14,9 @@ if (localStorage.getItem(USER_LOGIN)) {
 
 const initialState = {
   userLogin: user,
-
   infoUser: {},
+  listUser: [],
+  editUser: {},
 };
 
 export default (state = initialState, action) => {
@@ -28,6 +34,21 @@ export default (state = initialState, action) => {
       return {
         ...state,
         infoUser: action.infoUser,
+      };
+    }
+
+    case GET_LIST_USER: {
+      return {
+        ...state,
+        listUser: action.listUser,
+      };
+    }
+
+    case EDIT_USER: {
+      console.log("user: " + action.user?.taiKhoan);
+      return {
+        ...state,
+        editUser: action.user,
       };
     }
 

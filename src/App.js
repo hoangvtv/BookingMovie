@@ -1,42 +1,46 @@
-import logo from "./logo.svg";
-import "./App.css";
 import "./App.css";
 
-import { createBrowserHistory } from "history";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import HomeTempale from "./templates/HomeTemplate/HomeTempale";
-import Header from "./templates/HomeTemplate/Layout/Header/Header";
 import Contact from "./pages/Contact/Contact";
 import News from "./pages/News/News";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Home from "./pages/Home/Home";
-import Footer from "./templates/HomeTemplate/Layout/Footer/Footer";
 import Detail from "./pages/Detail/Detail";
 import CheckoutTemplate from "./templates/CheckoutTemplate/CheckoutTemplate";
 import Checkout from "./pages/Checkout/Checkout";
 import NotFound from "./pages/NotFound/NotFound";
-import { Suspense, lazy } from "react";
 import { UserTemplate } from "./templates/UserTemplate/UserTemplate";
 import Loading from "./components/Loading/Loading";
 import Profile from "./pages/Profile/Profile";
 import AdminTemplate from "./templates/AdminTemplate/AdmimTemplate";
-import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import Films from "./pages/Admin/Films/Films";
 import Users from "./pages/Admin/Users/Users";
 import AddFilm from "./pages/Admin/Films/AddFilm/AddFilm";
 import EditFilm from "./pages/Admin/Films/EditFilm/EditFilm";
 import ShowTime from "./pages/Admin/Films/ShowTime/ShowTime";
-
-export const history = createBrowserHistory();
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import EditUser from "./pages/Admin/Users/EditUser/EditUser";
 
 // const CheckoutLazy = lazy(() => import("./pages/Checkout/Checkout"));
 
 function App() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({
+      type: "ADD_NAVIGATE",
+      navigate,
+    });
+  });
+
   return (
     <div>
       <Loading />
-      <Routes history={history}>
+      <Routes>
         <Route
           path="/"
           element={
@@ -105,14 +109,14 @@ function App() {
           }
         />
 
-        <Route
+        {/* <Route
           path="/admin"
           element={
             <AdminTemplate>
               <Dashboard />
             </AdminTemplate>
           }
-        />
+        /> */}
 
         <Route
           path="/admin/films"
@@ -145,6 +149,14 @@ function App() {
           element={
             <AdminTemplate>
               <Users />
+            </AdminTemplate>
+          }
+        />
+        <Route
+          path="/admin/users/edit/:taiKhoan"
+          element={
+            <AdminTemplate>
+              <EditUser />
             </AdminTemplate>
           }
         />

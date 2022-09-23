@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { PlayCircleOutlined } from "@ant-design/icons";
 import "./FilmFlip.css";
 import { useNavigate } from "react-router-dom";
 
 export default function FilmFlip(props) {
   const { film } = props;
+
   const navigate = useNavigate();
   return (
     <div className="flip-card mt-2 ">
@@ -38,9 +39,10 @@ export default function FilmFlip(props) {
             }}
           >
             <div>
-              <div className="rounded-full cursor-pointer">
+              <div className="rounded-full cursor-pointer" onClick={() => {}}>
                 <PlayCircleOutlined style={{ fontSize: "50px" }} />
               </div>
+
               <div className="text-2xl mt-2 font-bold">{film.tenPhim}</div>
             </div>
           </div>

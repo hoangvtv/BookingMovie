@@ -137,7 +137,7 @@ export default function Films() {
   ];
 
   const onSearch = (value) => {
-    console.log(value);
+    // console.log(value);
     //gọi API lấy danh sách phim
     dispatch(getFilmAction(value));
   };
