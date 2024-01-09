@@ -3,10 +3,15 @@
     "1": "Hello",
     "2": "Hello"
   },
-  "signin": "Sign in",
-  "signup": "Sign up",
+  "Trang chủ": "Home",
+  "Đăng nhập": "Sign in",
+  "Đăng ký": "Sign up",
   "home": "Home",
   "contact": "Contact",
   "news": "News",
-  "logout": "Logout"
+  "logout": "Logout",
+  "Khách sạn": "Hotel",
+  "Chuyến bay": "Flight",
+  "Khám phá": "Discover",
+  "Khuyến mãi": "Promotion"
 }

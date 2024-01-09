@@ -1,0 +1,44 @@
+.container__login {
+  position: relative;
+  min-height: 100vh;
+  min-width: 100%;
+  background-image: url("../../assets/img/bg1.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+.login__form {
+  position: absolute;
+  background-color: #fff;
+  padding: 40px 58px;
+  border-radius: 30px;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+h6 {
+  font-family: Be Vietnam Pro;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: capitalize;
+  color: #177ba5 !important;
+  margin-top: 16px;
+}
+.login__form__text {
+  font-family: Be Vietnam Pro;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
+  color: #37454d !important;
+  margin-bottom: 50px;
+}
+.login__footer {
+  display: flex;
+  justify-content: space-between;
+}

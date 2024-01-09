@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect } from "react";
-import Footer from "./Layout/Footer/Footer";
 import Header from "./Layout/Header/Header";
-import HomeCarousel from "./Layout/HomeCarousel/HomeCarousel";
+import FooterI from "./Layout/FooterI/FooterI";
 
 export default function HomeTempale({ children }) {
   useEffect(() => {
@@ -11,7 +10,7 @@ export default function HomeTempale({ children }) {
     <Fragment>
       <Header />
       {children}
-      <Footer />
+      <FooterI />
     </Fragment>
   );
 }
