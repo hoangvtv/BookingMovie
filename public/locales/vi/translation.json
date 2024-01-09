@@ -3,14 +3,10 @@
     "1": "Xin Chào",
     "2": "Xin Chào"
   },
-  "Trang chủ": "Trang chủ",
-  "Đăng nhập": "Đăng nhập",
-  "Đăng ký": "Đăng ký",
+  "signin": "Đăng nhập",
+  "signup": "Đăng ký",
   "home": "Trang chủ",
   "contact": "Liên hệ",
   "news": "Tin tức",
-  "Khách sạn": "Khách sạn",
-  "Chuyến bay": "Chuyến bay",
-  "Khám phá": "Khám phá",
-  "Khuyến mãi": "Khuyến mãi"
+  "logout": "Đăng xuât"
 }

@@ -1,6 +1,7 @@
 import React, { Fragment, Suspense } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Select } from "antd";
+
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import _ from "lodash";
@@ -33,7 +34,7 @@ export default function Header() {
             }}
             className="self-center px-8 py-3 rounded"
           >
-            {t("Đăng nhập")}
+            {t("signin")}
           </button>
           <button
             onClick={() => {
@@ -41,7 +42,7 @@ export default function Header() {
             }}
             className="self-center px-8 py-3 font-semibold rounded bg-violet-600 text-coolGray-50"
           >
-            {t("Đăng ký")}
+            {t("signup")}
           </button>
         </Fragment>
       );
@@ -77,9 +78,8 @@ export default function Header() {
       <div className="container flex justify-between h-16 mx-auto">
         <NavLink to="/" className="flex items-center p-2">
           <img
-            src={require("../../../../assets/img/logoCG.png")}
+            src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png"
             alt="logo"
-            style={{ width: "120px" }}
           />
         </NavLink>
         <ul className="items-stretch hidden space-x-3 lg:flex">
@@ -90,48 +90,28 @@ export default function Header() {
                  hover:scale-110"
               style={navLinkStyle}
             >
-              {t("Trang chủ")}
-            </NavLink>
-          </li>
-          <li className="flex">
-            <NavLink
-              to="/hotel"
-              className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-violet-600 border-violet-600 text-white 
-                 hover:scale-110"
-              style={navLinkStyle}
-            >
-              {t("Khách sạn")}
-            </NavLink>
-          </li>
-          {/* <li className="flex">
-            <NavLink
-              to="/"
-              className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-violet-600 border-violet-600 text-white 
-                 hover:scale-110"
-              style={navLinkStyle}
-            >
               {t("home")}
             </NavLink>
-          </li> */}
+          </li>
           <li className="flex">
             <NavLink
-              to="/flights"
+              to="/contact"
               className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-violet-600 border-violet-600 text-white 
                  hover:scale-110"
               style={navLinkStyle}
             >
-              {t("Chuyến bay")}
+              {t("contact")}
             </NavLink>
           </li>
 
           <li className="flex">
             <NavLink
-              to="/discovery"
+              to="/news"
               className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent  border-violet-600 text-white 
                 hover:scale-110"
               style={navLinkStyle}
             >
-              {t("Khám phá")}
+              {t("news")}
             </NavLink>
           </li>
         </ul>
@@ -152,14 +132,14 @@ export default function Header() {
           </NavLink> */}
           {renderLogin()}
           <Select
-            defaultValue="vi"
+            defaultValue="en"
             style={{ width: 100 }}
             onChange={handleChange}
           >
-            <Option value="vi">Vi</Option>
             <Option value="en">Eng</Option>
-
             <Option value="chi">Chi</Option>
+
+            <Option value="vi">Vi</Option>
           </Select>
         </div>
         <button className="p-4 lg:hidden">

@@ -1,20 +1,36 @@
 import logo from "./logo.svg";
 import "./App.css";
+import "./App.css";
 
 import { createBrowserHistory } from "history";
 import { Route, Routes } from "react-router-dom";
 import HomeTempale from "./templates/HomeTemplate/HomeTempale";
+import Header from "./templates/HomeTemplate/Layout/Header/Header";
+import Contact from "./pages/Contact/Contact";
+import News from "./pages/News/News";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Home from "./pages/Home/Home";
+import Footer from "./templates/HomeTemplate/Layout/Footer/Footer";
+import Detail from "./pages/Detail/Detail";
+import CheckoutTemplate from "./templates/CheckoutTemplate/CheckoutTemplate";
+import Checkout from "./pages/Checkout/Checkout";
 import NotFound from "./pages/NotFound/NotFound";
+import { Suspense, lazy } from "react";
 import { UserTemplate } from "./templates/UserTemplate/UserTemplate";
 import Loading from "./components/Loading/Loading";
-import Discovery from "./pages/Discovery/Discovery";
-import Flight from "./pages/Flight/Flight";
-import Hotel from "./pages/Hotel/Hotel";
+import Profile from "./pages/Profile/Profile";
+import AdminTemplate from "./templates/AdminTemplate/AdmimTemplate";
+import Dashboard from "./pages/Admin/Dashboard/Dashboard";
+import Films from "./pages/Admin/Films/Films";
+import Users from "./pages/Admin/Users/Users";
+import AddFilm from "./pages/Admin/Films/AddFilm/AddFilm";
+import EditFilm from "./pages/Admin/Films/EditFilm/EditFilm";
+import ShowTime from "./pages/Admin/Films/ShowTime/ShowTime";
 
 export const history = createBrowserHistory();
+
+// const CheckoutLazy = lazy(() => import("./pages/Checkout/Checkout"));
 
 function App() {
   return (
@@ -29,33 +45,40 @@ function App() {
             </HomeTempale>
           }
         />
-
         <Route
-          path="/hotel"
+          path="/contact"
           element={
             <HomeTempale>
-              <Hotel />
-            </HomeTempale>
-          }
-        />
-        <Route
-          path="/flights"
-          element={
-            <HomeTempale>
-              <Flight />
+              <Contact />
             </HomeTempale>
           }
         />
 
         <Route
-          path="/discovery"
+          path="/news"
           element={
             <HomeTempale>
-              <Discovery />
+              <News />
+            </HomeTempale>
+          }
+        />
+        <Route
+          path="/detail/:id"
+          element={
+            <HomeTempale>
+              <Detail />
             </HomeTempale>
           }
         />
 
+        <Route
+          path="/checkout/:id"
+          element={
+            <CheckoutTemplate>
+              <Checkout />
+            </CheckoutTemplate>
+          }
+        />
         <Route
           path="/login"
           element={
@@ -64,7 +87,6 @@ function App() {
             </UserTemplate>
           }
         />
-
         <Route
           path="/register"
           element={
@@ -74,6 +96,67 @@ function App() {
           }
         />
 
+        <Route
+          path="/profile"
+          element={
+            <HomeTempale>
+              <Profile />
+            </HomeTempale>
+          }
+        />
+
+        <Route
+          path="/admin"
+          element={
+            <AdminTemplate>
+              <Dashboard />
+            </AdminTemplate>
+          }
+        />
+
+        <Route
+          path="/admin/films"
+          element={
+            <AdminTemplate>
+              <Films />
+            </AdminTemplate>
+          }
+        />
+
+        <Route
+          path="/admin/films/add"
+          element={
+            <AdminTemplate>
+              <AddFilm />
+            </AdminTemplate>
+          }
+        />
+        <Route
+          path="/admin/films/edit/:id"
+          element={
+            <AdminTemplate>
+              <EditFilm />
+            </AdminTemplate>
+          }
+        />
+
+        <Route
+          path="/admin/users"
+          element={
+            <AdminTemplate>
+              <Users />
+            </AdminTemplate>
+          }
+        />
+
+        <Route
+          path="/admin/films/showtime/:idPhim/:tenPhim"
+          element={
+            <AdminTemplate>
+              <ShowTime />
+            </AdminTemplate>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
